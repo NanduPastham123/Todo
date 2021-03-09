@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+         TODO list
+        </title>
+    </head>
+    <body>
+        <h4>
+    luync problem statement:?
+        </h4>
+        <p>
+            Implement the simple TODO list using arrays
+        </p>
+        <form>
+
+            Enter Task:<input type="text" 
+            placeholder="Enter the lists here" size="20" id="task">
+            <button onclick="addTask()">Add</button>
+        </form>
+
+       <ul id="tasks">
+
+       </ul>
+        <script>
+            var allTasks=[];
+            function addTask(){
+                event.preventDefault();
+               var task_value= document.getElementById("task").value;
+               var task={
+                   taskId:1,
+                    taskname:task_value
+               }
+               allTasks.push(task);
+               displayTasks();
+            }
+            function displayTasks(){                //for display purpose we are taking the another function
+               
+                var tasks =document.getElementById("tasks");
+               
+                tasks.innerHTML="";                 //empty purpose donot readd the list
+               
+                allTasks.forEach(function(task){             //for adding one by one 
+               
+                    tasks.innerHTML=tasks.innerHTML+"<li>"+task.taskname+" &nbsp; &nbsp; taskID "+
+                        task.taskId+"<input id='cb' onclick='x("+task.taskId +")' type='checkbox'>"+"</li>";
+                })
+            }   
+            function x(taskId){
+                event.preventDefault();
+                
+                var cb = document.getElementById('cb');
+                console.log("taskId",taskId);
+                if(cb.checked==true){
+                    alert("strike it ");
+                    console.log("Before:allTasks",allTasks);
+                    
+                    allTasks.forEach(function(task){  
+                        if(task.taskId == taskId){
+                          task.taskname = "<del>"+task.taskname+"</del> "
+                         }
+                    })
+                    displayTasks();
+                    console.log("After:allTasks",allTasks);
+                }
+                else{
+                    alert("unstrike it");
+                }
+            }
+            /*var nandu=[];
+            function addTask(){
+                event.preventDefault();
+               var pastham= document.getElementById("task").value;
+                nandu.push(pastham);
+               uiTasks();
+            }      
+            function uiTasks(){
+                document.getElementById("tasks");
+                tasks.innerHTML="";
+
+                nandu.forEach(function(task){
+                     
+                    tasks.innerHTML=tasks.innerHTML+"<li>"+task+"<input type='checkbox'>"+"</li>";
+
+                })
+            }*/
+            </script>
+    </body>
+</html>
